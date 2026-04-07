@@ -1,0 +1,241 @@
+/* =================================================================
+   Apoorwa & Ankur — Full-page scroll-snap Hindu wedding
+   Consistent maroon / red / gold color theme throughout
+   With spinning mandalas, floating petals, sparkles
+   ================================================================= */
+
+:root{
+  --maroon:#7a1530;--maroon-d:#4e0c1e;--maroon-dd:#2d0812;--maroon-bg:#1a0508;
+  --red:#8b1a2b;--red-d:#5c1220;--red-dd:#3a0a14;
+  --gold:#c9a84c;--gold-l:#e8d48b;--gold-p:#f0e4b8;--gold-d:#a07828;
+  --cream:#faf3e8;--cream-d:#f0e4d0;
+  --rose:#b85c78;--rose-d:#8a3d55;
+  --txt-l:rgba(255,255,255,.92);--txt-dl:rgba(255,255,255,.55);
+  --ff-d:"Cormorant Garamond",Georgia,serif;
+  --ff-s:"Great Vibes",cursive;
+  --ff-b:"Outfit",system-ui,sans-serif;
+}
+
+*,*::before,*::after{box-sizing:border-box;margin:0}
+html{scroll-behavior:auto}
+body{font-family:var(--ff-b);font-weight:400;color:#fff;background:var(--maroon-bg);overflow:hidden;line-height:1.6;height:100vh;height:100dvh}
+
+/* ═══════ FULL-PAGE SCROLL SNAP ═══════ */
+.pages{height:100vh;height:100dvh;overflow-y:auto;scroll-snap-type:y mandatory;-webkit-overflow-scrolling:touch}
+.page{height:100vh;height:100dvh;scroll-snap-align:start;position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden}
+
+/* ═══════ BACKGROUNDS — ALL maroon/red/gold ═══════ */
+.page__bg{position:absolute;inset:0;z-index:0}
+
+.page__bg--hero{
+  background:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Ccircle cx='100' cy='100' r='80' fill='none' stroke='rgba(201,168,76,.07)' stroke-width='.6'/%3E%3Ccircle cx='100' cy='100' r='55' fill='none' stroke='rgba(201,168,76,.06)' stroke-width='.5'/%3E%3Ccircle cx='100' cy='100' r='30' fill='none' stroke='rgba(201,168,76,.05)' stroke-width='.4'/%3E%3Cpath d='M100 20 Q115 60 100 100 Q85 60 100 20' fill='rgba(201,168,76,.04)'/%3E%3Cpath d='M100 180 Q115 140 100 100 Q85 140 100 180' fill='rgba(201,168,76,.04)'/%3E%3Cpath d='M20 100 Q60 85 100 100 Q60 115 20 100' fill='rgba(201,168,76,.04)'/%3E%3Cpath d='M180 100 Q140 85 100 100 Q140 115 180 100' fill='rgba(201,168,76,.04)'/%3E%3C/svg%3E"),
+    radial-gradient(ellipse 60% 50% at 50% 40%,rgba(122,21,48,.4),transparent),
+    linear-gradient(180deg,#0d0305 0%,var(--maroon-dd) 25%,var(--maroon-d) 55%,var(--maroon) 100%);
+}
+
+.page__bg--invite{
+  background:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='180'%3E%3Cpath d='M60 10 Q80 10 85 35 Q90 65 60 80 Q30 65 35 35 Q40 10 60 10Z' fill='none' stroke='rgba(201,168,76,.1)' stroke-width='.6'/%3E%3Cpath d='M60 22 Q72 22 75 38 Q78 55 60 64 Q42 55 45 38 Q48 22 60 22Z' fill='none' stroke='rgba(201,168,76,.07)' stroke-width='.4'/%3E%3Ccircle cx='60' cy='42' r='6' fill='none' stroke='rgba(201,168,76,.06)' stroke-width='.3'/%3E%3Cpath d='M60 80 Q55 110 60 140 Q65 110 60 80' fill='rgba(201,168,76,.04)'/%3E%3C/svg%3E"),
+    radial-gradient(ellipse 80% 60% at 50% 50%,rgba(139,26,43,.3),transparent),
+    linear-gradient(180deg,var(--red-dd),var(--red-d) 30%,var(--red) 60%,var(--red-d) 90%);
+}
+
+.page__bg--event{
+  background:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='140'%3E%3Cpath d='M50 8 Q68 8 72 30 Q76 55 50 68 Q24 55 28 30 Q32 8 50 8Z' fill='none' stroke='rgba(232,212,139,.08)' stroke-width='.6'/%3E%3Cpath d='M50 20 Q60 20 62 32 Q64 46 50 52 Q36 46 38 32 Q40 20 50 20Z' fill='none' stroke='rgba(232,212,139,.06)' stroke-width='.4'/%3E%3C/svg%3E"),
+    radial-gradient(ellipse 70% 50% at 50% 45%,rgba(78,12,30,.35),transparent),
+    linear-gradient(175deg,var(--maroon-dd) 0%,var(--maroon-d) 35%,var(--maroon) 65%,var(--maroon-d) 100%);
+}
+
+.page__bg--event-alt{
+  background:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='140'%3E%3Cpath d='M50 8 Q68 8 72 30 Q76 55 50 68 Q24 55 28 30 Q32 8 50 8Z' fill='none' stroke='rgba(232,212,139,.08)' stroke-width='.6'/%3E%3Cpath d='M50 20 Q60 20 62 32 Q64 46 50 52 Q36 46 38 32 Q40 20 50 20Z' fill='none' stroke='rgba(232,212,139,.06)' stroke-width='.4'/%3E%3C/svg%3E"),
+    radial-gradient(ellipse 60% 50% at 40% 55%,rgba(92,18,32,.4),transparent),
+    linear-gradient(185deg,var(--red-dd) 0%,var(--maroon-d) 40%,var(--maroon) 70%,var(--red-d) 100%);
+}
+
+.page__bg--venue{
+  background:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Ccircle cx='60' cy='60' r='50' fill='none' stroke='rgba(201,168,76,.07)' stroke-width='.5'/%3E%3Ccircle cx='60' cy='60' r='35' fill='none' stroke='rgba(201,168,76,.05)' stroke-width='.4'/%3E%3C/svg%3E"),
+    radial-gradient(ellipse 50% 50% at 50% 50%,rgba(184,92,120,.15),transparent),
+    linear-gradient(180deg,var(--maroon-dd),var(--rose-d) 50%,var(--maroon-d));
+}
+
+.page__bg--closing{
+  background:
+    radial-gradient(ellipse 80% 50% at 50% 60%,rgba(201,168,76,.1),transparent),
+    linear-gradient(180deg,var(--maroon-dd),var(--maroon-d) 35%,var(--maroon) 65%,var(--red-d));
+}
+
+/* ═══════ PAGE CONTENT ═══════ */
+.page__content{position:relative;z-index:2;text-align:center;padding:2rem 1.5rem;width:100%;max-width:36rem;margin:0 auto}
+
+/* ═══════════════════════════════
+   SPINNING MANDALAS (hero)
+   ═══════════════════════════════ */
+.mandala{position:absolute;border-radius:50%;border:1.5px solid rgba(201,168,76,.15);z-index:1;pointer-events:none}
+.mandala::before,.mandala::after{content:'';position:absolute;border-radius:50%;border:1px solid rgba(201,168,76,.1)}
+.mandala::before{inset:12%;border-style:dashed}
+.mandala::after{inset:25%}
+.mandala--1{width:clamp(280px,50vw,500px);height:clamp(280px,50vw,500px);top:50%;left:50%;transform:translate(-50%,-50%)}
+.mandala--2{width:clamp(200px,35vw,360px);height:clamp(200px,35vw,360px);top:50%;left:50%;transform:translate(-50%,-50%)}
+
+/* ═══════════════════════════════
+   FLOATING PETALS
+   ═══════════════════════════════ */
+.petals{position:fixed;inset:0;z-index:99;pointer-events:none;overflow:hidden}
+.petal{position:absolute;border-radius:50% 0 50% 0;background:radial-gradient(circle at 30% 30%,var(--gold),var(--gold-d));opacity:0}
+
+/* ═══════════════════════════════
+   SPARKLES
+   ═══════════════════════════════ */
+.sparkles{position:fixed;inset:0;z-index:98;pointer-events:none;overflow:hidden}
+.sparkle{position:absolute;border-radius:50%;background:var(--gold-l);opacity:0}
+
+/* ═══════════════════════════════
+   HERO
+   ═══════════════════════════════ */
+.hero__pre{font-family:var(--ff-d);font-style:italic;font-size:clamp(.8rem,2vw,.95rem);color:var(--gold);letter-spacing:.15em;text-transform:uppercase;margin-bottom:2rem;opacity:.7}
+.hero__bride,.hero__groom{font-family:var(--ff-d);font-weight:300;font-size:clamp(4rem,14vw,8rem);letter-spacing:.06em;line-height:.95;color:var(--txt-l)}
+.hero__bride{color:var(--gold-l)}
+.hero__weds{font-family:var(--ff-d);font-weight:300;font-size:clamp(1.2rem,3vw,1.6rem);letter-spacing:.5em;text-transform:uppercase;color:var(--txt-dl);margin:.5rem 0}
+.hero__groom{margin-bottom:2rem}
+.hero__date{font-size:clamp(.7rem,1.8vw,.82rem);letter-spacing:.4em;text-transform:uppercase;color:var(--gold);opacity:.5}
+
+/* ═══════════════════════════════
+   INVITATION CARD
+   ═══════════════════════════════ */
+.invite-card{padding:1rem 0}
+.invite-card__pre{font-family:var(--ff-d);font-style:italic;font-size:clamp(.85rem,2.2vw,1rem);color:var(--gold-l);margin-bottom:1.5rem;opacity:.8;line-height:1.7}
+.invite-card__families{margin-bottom:2rem}
+.invite-card__families p{font-family:var(--ff-d);font-size:clamp(.9rem,2.3vw,1.05rem);line-height:1.7;color:var(--txt-l)}
+.invite-card__and{font-family:var(--ff-d);font-size:1.2rem;color:var(--gold);opacity:.4;margin:.3rem 0}
+.invite-card__invite{font-family:var(--ff-d);font-weight:300;font-size:clamp(3rem,10vw,5.5rem);letter-spacing:.08em;color:var(--gold-p);margin-bottom:.5rem;line-height:1}
+.invite-card__text{font-family:var(--ff-d);font-style:italic;font-size:clamp(.85rem,2.2vw,1rem);color:var(--txt-dl);margin-bottom:1.5rem}
+.invite-card__couple{display:flex;align-items:baseline;justify-content:center;gap:.75rem;flex-wrap:wrap;margin-bottom:1.5rem}
+.invite-card__name{font-family:var(--ff-s);font-size:clamp(2.5rem,8vw,4rem);color:var(--gold-l);line-height:1}
+.invite-card__amp{font-family:var(--ff-d);font-size:1.2rem;color:var(--gold);opacity:.5}
+.invite-card__sub{font-family:var(--ff-d);font-size:clamp(.75rem,2vw,.88rem);letter-spacing:.12em;text-transform:uppercase;color:var(--txt-dl);opacity:.6}
+
+/* ═══════════════════════════════
+   EVENT FRAME — ornate arch
+   ═══════════════════════════════ */
+.event-frame{width:min(90vw,380px);margin:0 auto;position:relative}
+.event-frame::before{
+  content:'';position:absolute;inset:-6px;
+  border-radius:220px 220px 12px 12px;
+  border:2.5px solid var(--gold);
+  opacity:.5;
+  box-shadow:0 0 30px rgba(201,168,76,.08),inset 0 0 30px rgba(201,168,76,.03);
+}
+.event-frame::after{
+  content:'';position:absolute;inset:4px;
+  border-radius:216px 216px 8px 8px;
+  border:1px solid var(--gold);opacity:.2;
+}
+.event-frame__inner{
+  border-radius:210px 210px 8px 8px;
+  background:linear-gradient(180deg,rgba(240,228,184,.12) 0%,rgba(240,228,184,.04) 30%,rgba(240,228,184,.01) 100%);
+  backdrop-filter:blur(6px);
+  padding:3.5rem 2rem 2.5rem;
+  text-align:center;
+}
+.event-frame__title{font-family:var(--ff-d);font-weight:400;font-size:clamp(1.8rem,5.5vw,2.6rem);letter-spacing:.06em;color:var(--gold-p);margin-bottom:1.5rem;line-height:1.15}
+.event-frame__date{font-family:var(--ff-d);font-weight:500;font-size:clamp(.95rem,2.5vw,1.1rem);color:var(--txt-l);margin-bottom:.5rem}
+.event-frame__venue{font-family:var(--ff-d);font-size:clamp(.9rem,2.3vw,1.05rem);color:var(--txt-l);margin-bottom:.15rem}
+.event-frame__addr{font-family:var(--ff-b);font-size:.85rem;color:var(--txt-dl);margin-bottom:.1rem}
+.event-frame__city{font-family:var(--ff-b);font-size:.85rem;color:var(--txt-dl);margin-bottom:1.5rem}
+.event-frame__link{
+  display:inline-block;font-family:var(--ff-d);font-style:italic;
+  font-size:.95rem;color:var(--gold);text-decoration:underline;
+  text-underline-offset:4px;text-decoration-color:rgba(201,168,76,.4);
+  transition:color .3s,text-decoration-color .3s;
+}
+.event-frame__link:hover{color:var(--gold-l);text-decoration-color:var(--gold-l)}
+
+/* ═══════════════════════════════
+   VENUE PAGE
+   ═══════════════════════════════ */
+.venue__heading{font-family:var(--ff-d);font-weight:300;font-size:clamp(2.5rem,8vw,4.5rem);letter-spacing:.05em;color:var(--gold-p);margin-bottom:.5rem}
+.venue__sub{font-family:var(--ff-d);font-style:italic;font-size:1rem;color:var(--txt-dl);margin-bottom:3rem}
+.venue__maps{display:flex;flex-direction:column;gap:1.25rem;max-width:22rem;margin:0 auto}
+.venue__map-link{display:block;padding:1.2rem 1.5rem;border:1.5px solid rgba(201,168,76,.35);border-radius:12px;text-decoration:none;color:var(--txt-l);background:rgba(201,168,76,.04);transition:all .3s;backdrop-filter:blur(4px)}
+.venue__map-link:hover{border-color:var(--gold);background:rgba(201,168,76,.1);transform:translateY(-2px)}
+.venue__map-name{display:block;font-family:var(--ff-d);font-size:1.15rem;font-weight:500;color:var(--gold-l);margin-bottom:.25rem}
+.venue__map-detail{display:block;font-size:.78rem;color:var(--txt-dl)}
+
+/* ═══════════════════════════════
+   COUNTDOWN / CLOSING
+   ═══════════════════════════════ */
+.closing__heading{font-family:var(--ff-d);font-weight:300;font-size:clamp(2rem,6vw,3.5rem);color:var(--gold-p);margin-bottom:2rem;letter-spacing:.04em}
+.countdown{display:flex;align-items:center;justify-content:center;gap:.5rem;margin-bottom:2.5rem}
+.cd-block{text-align:center}
+.cd-n{display:block;font-family:var(--ff-d);font-weight:300;font-size:clamp(2.2rem,7vw,3.8rem);color:var(--gold-l);line-height:1;letter-spacing:.03em}
+.cd-l{display:block;font-size:.55rem;text-transform:uppercase;letter-spacing:.2em;color:var(--txt-dl);margin-top:.35rem}
+.cd-sep{font-family:var(--ff-d);font-size:clamp(1.2rem,3vw,2rem);color:var(--gold);opacity:.25;padding-bottom:.8rem}
+.closing__text{font-family:var(--ff-d);font-style:italic;font-size:clamp(.88rem,2.2vw,1.05rem);color:var(--txt-dl);max-width:26rem;margin:0 auto 2.5rem;line-height:1.8}
+.closing__copy{font-size:.72rem;color:var(--txt-dl);opacity:.4}
+
+/* ═══════════════════════════════
+   PAGE DOTS NAVIGATION
+   ═══════════════════════════════ */
+.dots{position:fixed;right:1rem;top:50%;transform:translateY(-50%);z-index:100;display:flex;flex-direction:column;gap:10px}
+.dot{width:10px;height:10px;border-radius:50%;border:1.5px solid rgba(201,168,76,.5);background:transparent;cursor:pointer;padding:0;transition:all .3s}
+.dot--active,.dot:hover{background:var(--gold);border-color:var(--gold);box-shadow:0 0 8px rgba(201,168,76,.3)}
+
+/* ═══════════════════════════════
+   MUSIC BUTTON
+   ═══════════════════════════════ */
+.music-btn{position:fixed;bottom:1.5rem;right:1.5rem;z-index:100;width:48px;height:48px;border-radius:50%;border:1.5px solid rgba(201,168,76,.4);background:rgba(26,5,8,.85);color:var(--gold);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .25s;backdrop-filter:blur(8px)}
+.music-btn:hover{border-color:var(--gold);background:rgba(201,168,76,.12)}
+
+/* ═══════════════════════════════
+   ORNAMENTAL ELEMENTS
+   ═══════════════════════════════ */
+.ornament{display:flex;align-items:center;justify-content:center;gap:6px;margin:1rem auto}
+.ornament span:first-child,.ornament span:last-child{width:clamp(30px,8vw,60px);height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+.ornament span:nth-child(2){width:6px;height:6px;border:1px solid var(--gold);transform:rotate(45deg);opacity:.6}
+.ornament--sm{margin:.6rem auto}
+.ornament--sm span:first-child,.ornament--sm span:last-child{width:clamp(20px,6vw,40px)}
+.ornament--sm span:nth-child(2){width:5px;height:5px}
+.ornament--lg{margin:1rem auto}
+.ornament--lg span:first-child,.ornament--lg span:last-child{width:clamp(40px,10vw,70px)}
+.ornament--lg span:nth-child(2){width:8px;height:8px}
+
+.ornament-line{display:inline-block;width:clamp(16px,4vw,30px);height:1px;background:var(--gold);opacity:.3;vertical-align:middle;margin:0 .5rem}
+
+/* Hero corner ornaments */
+.hero-corners{position:absolute;inset:2rem;z-index:1;pointer-events:none}
+.corner{position:absolute;width:clamp(30px,6vw,50px);height:clamp(30px,6vw,50px)}
+.corner::before,.corner::after{content:'';position:absolute;background:var(--gold);opacity:.25}
+.corner::before{width:100%;height:1px;top:0}
+.corner::after{width:1px;height:100%;left:0}
+.corner--tl{top:0;left:0}
+.corner--tr{top:0;right:0}.corner--tr::before{right:0;left:auto}.corner--tr::after{right:0;left:auto}
+.corner--bl{bottom:0;left:0}.corner--bl::before{bottom:0;top:auto}.corner--bl::after{bottom:0;top:auto}
+.corner--br{bottom:0;right:0}.corner--br::before{right:0;left:auto;bottom:0;top:auto}.corner--br::after{right:0;left:auto;bottom:0;top:auto}
+
+/* Floral accents on event frames */
+.frame-flower{position:absolute;width:24px;height:24px;bottom:-12px;z-index:2}
+.frame-flower--l{left:calc(50% - 80px)}
+.frame-flower--r{right:calc(50% - 80px)}
+.frame-flower::before{content:'';position:absolute;inset:0;background:radial-gradient(circle,var(--gold) 25%,transparent 25%);opacity:.35;border-radius:50%}
+.frame-flower::after{content:'';position:absolute;inset:4px;border:1px solid var(--gold);border-radius:50%;opacity:.2}
+
+/* ═══════════════════════════════
+   RESPONSIVE
+   ═══════════════════════════════ */
+@media(max-width:480px){
+  .dots{right:.5rem;gap:8px}
+  .dot{width:8px;height:8px}
+  .event-frame__inner{padding:3rem 1.5rem 2rem}
+  .page__content{padding:1.5rem 1rem}
+  .mandala--1{width:240px;height:240px}
+  .mandala--2{width:170px;height:170px}
+}
+@media(min-width:1024px){
+  .hero__bride,.hero__groom{font-size:8rem}
+  .page__content{max-width:42rem}
+  .event-frame{width:min(70vw,420px)}
+}
