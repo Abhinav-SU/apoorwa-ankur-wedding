@@ -1,7 +1,6 @@
 /* =================================================================
-   Apoorwa & Ankur — Full-page scroll-snap Hindu wedding
-   Consistent maroon / red / gold color theme throughout
-   With spinning mandalas, floating petals, sparkles
+   Apoorwa & Ankur — Hindu Wedding
+   Maroon / red / gold  ·  Timeline events  ·  Ornate corners
    ================================================================= */
 
 :root{
@@ -17,14 +16,21 @@
 }
 
 *,*::before,*::after{box-sizing:border-box;margin:0}
-html{scroll-behavior:auto}
-body{font-family:var(--ff-b);font-weight:400;color:#fff;background:var(--maroon-bg);overflow:hidden;line-height:1.6;height:100vh;height:100dvh}
+html{scroll-behavior:smooth}
+body{font-family:var(--ff-b);font-weight:400;color:#fff;background:var(--maroon-bg);line-height:1.6;overflow-x:hidden}
 
-/* ═══════ FULL-PAGE SCROLL SNAP ═══════ */
-.pages{height:100vh;height:100dvh;overflow-y:auto;scroll-snap-type:y mandatory;-webkit-overflow-scrolling:touch}
-.page{height:100vh;height:100dvh;scroll-snap-align:start;position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden}
+/* ═══════ LAYOUT ═══════ */
+.pages{-webkit-overflow-scrolling:touch}
+.page{min-height:100vh;min-height:100dvh;position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden}
 
-/* ═══════ BACKGROUNDS — ALL maroon/red/gold ═══════ */
+@media(max-width:767px){
+  body{overflow:hidden;height:100vh;height:100dvh}
+  .pages{height:100vh;height:100dvh;overflow-y:auto;scroll-snap-type:y mandatory}
+  .page{height:100vh;height:100dvh;min-height:auto;scroll-snap-align:start}
+  .page--events{height:auto;min-height:100dvh;scroll-snap-align:start}
+}
+
+/* ═══════ BACKGROUNDS ═══════ */
 .page__bg{position:absolute;inset:0;z-index:0}
 
 .page__bg--hero{
@@ -34,6 +40,12 @@ body{font-family:var(--ff-b);font-weight:400;color:#fff;background:var(--maroon-
     linear-gradient(180deg,#0d0305 0%,var(--maroon-dd) 25%,var(--maroon-d) 55%,var(--maroon) 100%);
 }
 
+.page__bg--couple{
+  background:
+    radial-gradient(ellipse 70% 60% at 50% 50%,rgba(122,21,48,.5),transparent),
+    linear-gradient(180deg,var(--maroon-dd) 0%,var(--maroon-d) 30%,var(--maroon) 60%,var(--red-d) 100%);
+}
+
 .page__bg--invite{
   background:
     url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='180'%3E%3Cpath d='M60 10 Q80 10 85 35 Q90 65 60 80 Q30 65 35 35 Q40 10 60 10Z' fill='none' stroke='rgba(201,168,76,.1)' stroke-width='.6'/%3E%3Cpath d='M60 22 Q72 22 75 38 Q78 55 60 64 Q42 55 45 38 Q48 22 60 22Z' fill='none' stroke='rgba(201,168,76,.07)' stroke-width='.4'/%3E%3Ccircle cx='60' cy='42' r='6' fill='none' stroke='rgba(201,168,76,.06)' stroke-width='.3'/%3E%3Cpath d='M60 80 Q55 110 60 140 Q65 110 60 80' fill='rgba(201,168,76,.04)'/%3E%3C/svg%3E"),
@@ -41,25 +53,11 @@ body{font-family:var(--ff-b);font-weight:400;color:#fff;background:var(--maroon-
     linear-gradient(180deg,var(--red-dd),var(--red-d) 30%,var(--red) 60%,var(--red-d) 90%);
 }
 
-.page__bg--event{
+.page__bg--events{
   background:
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='140'%3E%3Cpath d='M50 8 Q68 8 72 30 Q76 55 50 68 Q24 55 28 30 Q32 8 50 8Z' fill='none' stroke='rgba(232,212,139,.08)' stroke-width='.6'/%3E%3Cpath d='M50 20 Q60 20 62 32 Q64 46 50 52 Q36 46 38 32 Q40 20 50 20Z' fill='none' stroke='rgba(232,212,139,.06)' stroke-width='.4'/%3E%3C/svg%3E"),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='140'%3E%3Cpath d='M50 8 Q68 8 72 30 Q76 55 50 68 Q24 55 28 30 Q32 8 50 8Z' fill='none' stroke='rgba(232,212,139,.06)' stroke-width='.5'/%3E%3C/svg%3E"),
     radial-gradient(ellipse 70% 50% at 50% 45%,rgba(78,12,30,.35),transparent),
     linear-gradient(175deg,var(--maroon-dd) 0%,var(--maroon-d) 35%,var(--maroon) 65%,var(--maroon-d) 100%);
-}
-
-.page__bg--event-alt{
-  background:
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='140'%3E%3Cpath d='M50 8 Q68 8 72 30 Q76 55 50 68 Q24 55 28 30 Q32 8 50 8Z' fill='none' stroke='rgba(232,212,139,.08)' stroke-width='.6'/%3E%3Cpath d='M50 20 Q60 20 62 32 Q64 46 50 52 Q36 46 38 32 Q40 20 50 20Z' fill='none' stroke='rgba(232,212,139,.06)' stroke-width='.4'/%3E%3C/svg%3E"),
-    radial-gradient(ellipse 60% 50% at 40% 55%,rgba(92,18,32,.4),transparent),
-    linear-gradient(185deg,var(--red-dd) 0%,var(--maroon-d) 40%,var(--maroon) 70%,var(--red-d) 100%);
-}
-
-.page__bg--venue{
-  background:
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Ccircle cx='60' cy='60' r='50' fill='none' stroke='rgba(201,168,76,.07)' stroke-width='.5'/%3E%3Ccircle cx='60' cy='60' r='35' fill='none' stroke='rgba(201,168,76,.05)' stroke-width='.4'/%3E%3C/svg%3E"),
-    radial-gradient(ellipse 50% 50% at 50% 50%,rgba(184,92,120,.15),transparent),
-    linear-gradient(180deg,var(--maroon-dd),var(--rose-d) 50%,var(--maroon-d));
 }
 
 .page__bg--closing{
@@ -69,7 +67,7 @@ body{font-family:var(--ff-b);font-weight:400;color:#fff;background:var(--maroon-
 }
 
 /* ═══════ PAGE CONTENT ═══════ */
-.page__content{position:relative;z-index:2;text-align:center;padding:2rem 1.5rem;width:100%;max-width:36rem;margin:0 auto}
+.page__content{position:relative;z-index:2;text-align:center;padding:3rem 1.5rem;width:100%;max-width:36rem;margin:0 auto}
 
 /* ═══════════════════════════════
    SPINNING MANDALAS (hero)
@@ -81,15 +79,9 @@ body{font-family:var(--ff-b);font-weight:400;color:#fff;background:var(--maroon-
 .mandala--1{width:clamp(280px,50vw,500px);height:clamp(280px,50vw,500px);top:50%;left:50%;transform:translate(-50%,-50%)}
 .mandala--2{width:clamp(200px,35vw,360px);height:clamp(200px,35vw,360px);top:50%;left:50%;transform:translate(-50%,-50%)}
 
-/* ═══════════════════════════════
-   FLOATING PETALS
-   ═══════════════════════════════ */
+/* ═══════ FLOATING PETALS & SPARKLES ═══════ */
 .petals{position:fixed;inset:0;z-index:99;pointer-events:none;overflow:hidden}
 .petal{position:absolute;border-radius:50% 0 50% 0;background:radial-gradient(circle at 30% 30%,var(--gold),var(--gold-d));opacity:0}
-
-/* ═══════════════════════════════
-   SPARKLES
-   ═══════════════════════════════ */
 .sparkles{position:fixed;inset:0;z-index:98;pointer-events:none;overflow:hidden}
 .sparkle{position:absolute;border-radius:50%;background:var(--gold-l);opacity:0}
 
@@ -104,6 +96,35 @@ body{font-family:var(--ff-b);font-weight:400;color:#fff;background:var(--maroon-
 .hero__date{font-size:clamp(.7rem,1.8vw,.82rem);letter-spacing:.4em;text-transform:uppercase;color:var(--gold);opacity:.5}
 
 /* ═══════════════════════════════
+   COUPLE PHOTO — gradient corner brackets
+   Corners drawn via background-image gradients on the
+   element itself, so they always align with the box edges.
+   ═══════════════════════════════ */
+.couple-content{max-width:40rem;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.photo-frame{
+  --cl:clamp(24px,6vw,40px);--ct:2px;--cg:var(--gold);
+  position:relative;width:clamp(180px,42vw,260px);margin:0 auto 1rem;padding:10px;
+  background:
+    linear-gradient(var(--cg),var(--cg)) 0 0/var(--cl) var(--ct) no-repeat,
+    linear-gradient(var(--cg),var(--cg)) 0 0/var(--ct) var(--cl) no-repeat,
+    linear-gradient(var(--cg),var(--cg)) 100% 0/var(--cl) var(--ct) no-repeat,
+    linear-gradient(var(--cg),var(--cg)) 100% 0/var(--ct) var(--cl) no-repeat,
+    linear-gradient(var(--cg),var(--cg)) 0 100%/var(--cl) var(--ct) no-repeat,
+    linear-gradient(var(--cg),var(--cg)) 0 100%/var(--ct) var(--cl) no-repeat,
+    linear-gradient(var(--cg),var(--cg)) 100% 100%/var(--cl) var(--ct) no-repeat,
+    linear-gradient(var(--cg),var(--cg)) 100% 100%/var(--ct) var(--cl) no-repeat;
+}
+.photo-frame__img{width:100%;display:block;aspect-ratio:3/4;object-fit:cover;object-position:center 20%}
+
+.couple__names{
+  font-family:var(--ff-d);font-weight:300;
+  font-size:clamp(2rem,6vw,3.2rem);
+  color:var(--gold-p);letter-spacing:.06em;margin-bottom:.5rem;
+}
+.couple__amp{font-family:var(--ff-d);font-weight:300;font-size:clamp(1.2rem,3vw,1.6rem);color:var(--gold);opacity:.5;margin:0 .3rem}
+.couple__tagline{font-family:var(--ff-d);font-style:italic;font-size:clamp(.85rem,2.2vw,1rem);color:var(--txt-dl);letter-spacing:.05em}
+
+/* ═══════════════════════════════
    INVITATION CARD
    ═══════════════════════════════ */
 .invite-card{padding:1rem 0}
@@ -116,54 +137,82 @@ body{font-family:var(--ff-b);font-weight:400;color:#fff;background:var(--maroon-
 .invite-card__couple{display:flex;align-items:baseline;justify-content:center;gap:.75rem;flex-wrap:wrap;margin-bottom:1.5rem}
 .invite-card__name{font-family:var(--ff-s);font-size:clamp(2.5rem,8vw,4rem);color:var(--gold-l);line-height:1}
 .invite-card__amp{font-family:var(--ff-d);font-size:1.2rem;color:var(--gold);opacity:.5}
-.invite-card__sub{font-family:var(--ff-d);font-size:clamp(.75rem,2vw,.88rem);letter-spacing:.12em;text-transform:uppercase;color:var(--txt-dl);opacity:.6}
 
 /* ═══════════════════════════════
-   EVENT FRAME — ornate arch
+   EVENTS TIMELINE
    ═══════════════════════════════ */
-.event-frame{width:min(90vw,380px);margin:0 auto;position:relative}
-.event-frame::before{
-  content:'';position:absolute;inset:-6px;
-  border-radius:220px 220px 12px 12px;
-  border:2.5px solid var(--gold);
-  opacity:.5;
-  box-shadow:0 0 30px rgba(201,168,76,.08),inset 0 0 30px rgba(201,168,76,.03);
+.events-content{max-width:44rem;padding-top:4rem;padding-bottom:4rem}
+.events__heading{
+  font-family:var(--ff-d);font-weight:300;
+  font-size:clamp(2.2rem,6vw,3.5rem);
+  color:var(--gold-p);letter-spacing:.06em;margin-bottom:.5rem;
 }
-.event-frame::after{
-  content:'';position:absolute;inset:4px;
-  border-radius:216px 216px 8px 8px;
-  border:1px solid var(--gold);opacity:.2;
+
+.timeline{position:relative;margin-top:2.5rem;display:flex;flex-direction:column;align-items:center}
+.timeline__line{
+  position:absolute;left:50%;top:0;bottom:0;width:1px;
+  background:linear-gradient(180deg,transparent,var(--gold) 10%,var(--gold) 90%,transparent);
+  opacity:.3;transform:translateX(-50%);
 }
-.event-frame__inner{
-  border-radius:210px 210px 8px 8px;
-  background:linear-gradient(180deg,rgba(240,228,184,.12) 0%,rgba(240,228,184,.04) 30%,rgba(240,228,184,.01) 100%);
-  backdrop-filter:blur(6px);
-  padding:3.5rem 2rem 2.5rem;
+
+.tl-card{position:relative;padding:1.2rem 0;width:100%;display:flex;justify-content:center}
+.tl-card__dot{
+  position:absolute;left:50%;top:50%;
+  width:12px;height:12px;
+  border:2px solid var(--gold);border-radius:50%;
+  background:var(--maroon-d);
+  transform:translate(-50%,-50%);z-index:2;
+  box-shadow:0 0 12px rgba(201,168,76,.3);
+}
+.tl-card__dot--lg{width:16px;height:16px;background:var(--gold);box-shadow:0 0 20px rgba(201,168,76,.5)}
+
+.tl-card__body{
+  --cl:20px;--ct:1.5px;--cc:rgba(201,168,76,.5);
+  position:relative;
+  width:clamp(240px,75vw,320px);
+  padding:1.6rem 1.5rem;
+  backdrop-filter:blur(8px);
   text-align:center;
+  transition:box-shadow .4s;
+  background:
+    linear-gradient(var(--cc),var(--cc)) 0 0/var(--cl) var(--ct) no-repeat,
+    linear-gradient(var(--cc),var(--cc)) 0 0/var(--ct) var(--cl) no-repeat,
+    linear-gradient(var(--cc),var(--cc)) 100% 0/var(--cl) var(--ct) no-repeat,
+    linear-gradient(var(--cc),var(--cc)) 100% 0/var(--ct) var(--cl) no-repeat,
+    linear-gradient(var(--cc),var(--cc)) 0 100%/var(--cl) var(--ct) no-repeat,
+    linear-gradient(var(--cc),var(--cc)) 0 100%/var(--ct) var(--cl) no-repeat,
+    linear-gradient(var(--cc),var(--cc)) 100% 100%/var(--cl) var(--ct) no-repeat,
+    linear-gradient(var(--cc),var(--cc)) 100% 100%/var(--ct) var(--cl) no-repeat,
+    rgba(240,228,184,.04);
 }
-.event-frame__title{font-family:var(--ff-d);font-weight:400;font-size:clamp(1.8rem,5.5vw,2.6rem);letter-spacing:.06em;color:var(--gold-p);margin-bottom:1.5rem;line-height:1.15}
-.event-frame__date{font-family:var(--ff-d);font-weight:500;font-size:clamp(.95rem,2.5vw,1.1rem);color:var(--txt-l);margin-bottom:.5rem}
-.event-frame__venue{font-family:var(--ff-d);font-size:clamp(.9rem,2.3vw,1.05rem);color:var(--txt-l);margin-bottom:.15rem}
-.event-frame__addr{font-family:var(--ff-b);font-size:.85rem;color:var(--txt-dl);margin-bottom:.1rem}
-.event-frame__city{font-family:var(--ff-b);font-size:.85rem;color:var(--txt-dl);margin-bottom:1.5rem}
-.event-frame__link{
-  display:inline-block;font-family:var(--ff-d);font-style:italic;
-  font-size:.95rem;color:var(--gold);text-decoration:underline;
-  text-underline-offset:4px;text-decoration-color:rgba(201,168,76,.4);
-  transition:color .3s,text-decoration-color .3s;
+.tl-card__body:hover{
+  box-shadow:0 0 40px rgba(201,168,76,.08);
 }
-.event-frame__link:hover{color:var(--gold-l);text-decoration-color:var(--gold-l)}
 
-/* ═══════════════════════════════
-   VENUE PAGE
-   ═══════════════════════════════ */
-.venue__heading{font-family:var(--ff-d);font-weight:300;font-size:clamp(2.5rem,8vw,4.5rem);letter-spacing:.05em;color:var(--gold-p);margin-bottom:.5rem}
-.venue__sub{font-family:var(--ff-d);font-style:italic;font-size:1rem;color:var(--txt-dl);margin-bottom:3rem}
-.venue__maps{display:flex;flex-direction:column;gap:1.25rem;max-width:22rem;margin:0 auto}
-.venue__map-link{display:block;padding:1.2rem 1.5rem;border:1.5px solid rgba(201,168,76,.35);border-radius:12px;text-decoration:none;color:var(--txt-l);background:rgba(201,168,76,.04);transition:all .3s;backdrop-filter:blur(4px)}
-.venue__map-link:hover{border-color:var(--gold);background:rgba(201,168,76,.1);transform:translateY(-2px)}
-.venue__map-name{display:block;font-family:var(--ff-d);font-size:1.15rem;font-weight:500;color:var(--gold-l);margin-bottom:.25rem}
-.venue__map-detail{display:block;font-size:.78rem;color:var(--txt-dl)}
+.tl-card--highlight .tl-card__body{
+  --cl:26px;--ct:2px;--cc:rgba(201,168,76,.8);
+  box-shadow:0 0 30px rgba(201,168,76,.06);
+}
+
+.tl-card__title{
+  font-family:var(--ff-s);font-size:clamp(1.6rem,5vw,2.2rem);
+  color:var(--gold-p);margin-bottom:.8rem;line-height:1.2;
+}
+.tl-card__date{
+  font-family:var(--ff-d);font-weight:500;
+  font-size:clamp(.88rem,2.3vw,1rem);
+  color:var(--txt-l);margin-bottom:.4rem;letter-spacing:.03em;
+}
+.tl-card__venue{font-family:var(--ff-d);font-size:clamp(.88rem,2.2vw,1rem);color:var(--txt-l);margin-bottom:.1rem}
+.tl-card__addr{font-size:.82rem;color:var(--txt-dl);margin-bottom:.05rem}
+.tl-card__city{font-size:.82rem;color:var(--txt-dl);margin-bottom:.8rem}
+.tl-card__link{
+  display:inline-block;font-family:var(--ff-d);font-style:italic;
+  font-size:.9rem;color:var(--gold);text-decoration:none;
+  border-bottom:1px solid rgba(201,168,76,.3);padding-bottom:2px;
+  transition:color .3s,border-color .3s;
+}
+.tl-card__link:hover{color:var(--gold-l);border-color:var(--gold-l)}
 
 /* ═══════════════════════════════
    COUNTDOWN / CLOSING
@@ -178,7 +227,7 @@ body{font-family:var(--ff-b);font-weight:400;color:#fff;background:var(--maroon-
 .closing__copy{font-size:.72rem;color:var(--txt-dl);opacity:.4}
 
 /* ═══════════════════════════════
-   PAGE DOTS NAVIGATION
+   NAVIGATION DOTS
    ═══════════════════════════════ */
 .dots{position:fixed;right:1rem;top:50%;transform:translateY(-50%);z-index:100;display:flex;flex-direction:column;gap:10px}
 .dot{width:10px;height:10px;border-radius:50%;border:1.5px solid rgba(201,168,76,.5);background:transparent;cursor:pointer;padding:0;transition:all .3s}
@@ -202,7 +251,6 @@ body{font-family:var(--ff-b);font-weight:400;color:#fff;background:var(--maroon-
 .ornament--lg{margin:1rem auto}
 .ornament--lg span:first-child,.ornament--lg span:last-child{width:clamp(40px,10vw,70px)}
 .ornament--lg span:nth-child(2){width:8px;height:8px}
-
 .ornament-line{display:inline-block;width:clamp(16px,4vw,30px);height:1px;background:var(--gold);opacity:.3;vertical-align:middle;margin:0 .5rem}
 
 /* Hero corner ornaments */
@@ -216,26 +264,45 @@ body{font-family:var(--ff-b);font-weight:400;color:#fff;background:var(--maroon-
 .corner--bl{bottom:0;left:0}.corner--bl::before{bottom:0;top:auto}.corner--bl::after{bottom:0;top:auto}
 .corner--br{bottom:0;right:0}.corner--br::before{right:0;left:auto;bottom:0;top:auto}.corner--br::after{right:0;left:auto;bottom:0;top:auto}
 
-/* Floral accents on event frames */
-.frame-flower{position:absolute;width:24px;height:24px;bottom:-12px;z-index:2}
-.frame-flower--l{left:calc(50% - 80px)}
-.frame-flower--r{right:calc(50% - 80px)}
-.frame-flower::before{content:'';position:absolute;inset:0;background:radial-gradient(circle,var(--gold) 25%,transparent 25%);opacity:.35;border-radius:50%}
-.frame-flower::after{content:'';position:absolute;inset:4px;border:1px solid var(--gold);border-radius:50%;opacity:.2}
-
 /* ═══════════════════════════════
    RESPONSIVE
    ═══════════════════════════════ */
+/* On mobile, hide timeline dots (cards stack without center line) */
+@media(max-width:767px){
+  .tl-card__dot{display:none}
+}
 @media(max-width:480px){
   .dots{right:.5rem;gap:8px}
   .dot{width:8px;height:8px}
-  .event-frame__inner{padding:3rem 1.5rem 2rem}
   .page__content{padding:1.5rem 1rem}
   .mandala--1{width:240px;height:240px}
   .mandala--2{width:170px;height:170px}
+  .tl-card__body{padding:1.4rem 1.2rem}
+}
+@media(min-width:768px){
+  .page__content{padding:4rem 2rem}
+  .mandala--1{width:clamp(400px,55vw,650px);height:clamp(400px,55vw,650px)}
+  .mandala--2{width:clamp(280px,40vw,480px);height:clamp(280px,40vw,480px)}
+  .hero-corners{inset:3rem}
+  .corner{width:70px;height:70px}
+  .photo-frame{width:clamp(240px,25vw,320px)}
+
+  /* Timeline: centered cards with visible dot markers */
+  .tl-card__body{width:clamp(320px,40vw,420px)}
+  .tl-card__dot{display:block}
 }
 @media(min-width:1024px){
   .hero__bride,.hero__groom{font-size:8rem}
-  .page__content{max-width:42rem}
-  .event-frame{width:min(70vw,420px)}
+  .page__content{max-width:44rem;padding:5rem 2rem}
+  .events-content{max-width:50rem}
+  .tl-card__body{width:clamp(360px,35vw,440px);padding:2rem 2rem}
+  .tl-card__title{font-size:2.2rem}
+}
+@media(min-width:1440px){
+  .mandala--1{width:700px;height:700px}
+  .mandala--2{width:520px;height:520px}
+  .hero-corners{inset:4rem}
+  .corner{width:90px;height:90px}
+  .events-content{max-width:56rem}
+  .tl-card__body{width:clamp(400px,30vw,480px)}
 }

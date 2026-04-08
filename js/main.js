@@ -5,11 +5,15 @@
   const pages = document.getElementById("pages");
   const PETAL_COUNT = 20;
   const SPARKLE_COUNT = 30;
+  const isMobileSnap = ()=> window.innerWidth < 768;
+  const scrollRoot = ()=> isMobileSnap() ? pages : document.documentElement;
 
   function applyVersion(){
-    const v = new URLSearchParams(location.search).get("v");
+    const isFullVersion = new URLSearchParams(location.search).get("v")==="a"
+      || location.pathname.endsWith("/all.html")
+      || location.pathname.endsWith("/all");
     document.querySelectorAll("[data-version]").forEach(el=>{
-      el.style.display = (v==="a") ? "" : "none";
+      el.style.display = isFullVersion ? "" : "none";
     });
   }
 
@@ -31,14 +35,19 @@
           match.dot.classList.add("dot--active");
         }
       });
-    },{root:pages,threshold:.5});
+    },{root: isMobileSnap() ? pages : null, threshold:.5});
 
     sections.forEach(s=>obs.observe(s.sec));
 
     dots.forEach(d=>{
       d.addEventListener("click",()=>{
         const sec = document.getElementById(d.dataset.target);
-        if(sec && pages) pages.scrollTo({top:sec.offsetTop,behavior:"smooth"});
+        if(!sec) return;
+        if(isMobileSnap() && pages){
+          pages.scrollTo({top:sec.offsetTop,behavior:"smooth"});
+        } else {
+          sec.scrollIntoView({behavior:"smooth"});
+        }
       });
     });
   }
@@ -48,9 +57,19 @@
       entries.forEach(e=>{
         if(e.isIntersecting) e.target.classList.add("visible");
       });
-    },{root:pages,threshold:.25});
+    },{root: isMobileSnap() ? pages : null, threshold:.25});
 
     document.querySelectorAll(".page__content").forEach(el=>obs.observe(el));
+  }
+
+  function initTimelineReveal(){
+    const obs = new IntersectionObserver(entries=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting) e.target.classList.add("visible");
+      });
+    },{root: isMobileSnap() ? pages : null, threshold:.2});
+
+    document.querySelectorAll(".tl-card").forEach(el=>obs.observe(el));
   }
 
   function initPetals(){
@@ -133,6 +152,7 @@
   applyVersion();
   initDots();
   initReveal();
+  initTimelineReveal();
   initPetals();
   initSparkles();
   initCountdown();
