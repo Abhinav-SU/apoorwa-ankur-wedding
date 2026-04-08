@@ -27,7 +27,7 @@ body{font-family:var(--ff-b);font-weight:400;color:#fff;background:var(--maroon-
   body{overflow:hidden;height:100vh;height:100dvh}
   .pages{height:100vh;height:100dvh;overflow-y:auto;scroll-snap-type:y mandatory}
   .page{height:100vh;height:100dvh;min-height:auto;scroll-snap-align:start}
-  .page--events{height:auto;min-height:100dvh;scroll-snap-align:start}
+  .page--invite,.page--events{height:auto;min-height:100dvh;scroll-snap-align:start}
 }
 
 /* ═══════ BACKGROUNDS ═══════ */
@@ -127,7 +127,10 @@ body{font-family:var(--ff-b);font-weight:400;color:#fff;background:var(--maroon-
 /* ═══════════════════════════════
    INVITATION CARD
    ═══════════════════════════════ */
-.invite-card{padding:1rem 0}
+.invite-content{max-width:40rem;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.photo-frame--invite{width:clamp(130px,30vw,180px);margin-bottom:1.2rem}
+.photo-frame--invite .photo-frame__img{max-height:35vh}
+.invite-card{padding:.5rem 0}
 .invite-card__pre{font-family:var(--ff-d);font-style:italic;font-size:clamp(.85rem,2.2vw,1rem);color:var(--gold-l);margin-bottom:1.5rem;opacity:.8;line-height:1.7}
 .invite-card__families{margin-bottom:2rem}
 .invite-card__families p{font-family:var(--ff-d);font-size:clamp(.9rem,2.3vw,1.05rem);line-height:1.7;color:var(--txt-l)}
@@ -135,7 +138,7 @@ body{font-family:var(--ff-b);font-weight:400;color:#fff;background:var(--maroon-
 .invite-card__invite{font-family:var(--ff-d);font-weight:300;font-size:clamp(3rem,10vw,5.5rem);letter-spacing:.08em;color:var(--gold-p);margin-bottom:.5rem;line-height:1}
 .invite-card__text{font-family:var(--ff-d);font-style:italic;font-size:clamp(.85rem,2.2vw,1rem);color:var(--txt-dl);margin-bottom:1.5rem}
 .invite-card__couple{display:flex;align-items:baseline;justify-content:center;gap:.75rem;flex-wrap:wrap;margin-bottom:1.5rem}
-.invite-card__name{font-family:var(--ff-s);font-size:clamp(2.5rem,8vw,4rem);color:var(--gold-l);line-height:1}
+.invite-card__name{font-family:var(--ff-d);font-weight:300;font-size:clamp(2.2rem,7vw,3.5rem);color:var(--gold-l);line-height:1;letter-spacing:.04em}
 .invite-card__amp{font-family:var(--ff-d);font-size:1.2rem;color:var(--gold);opacity:.5}
 
 /* ═══════════════════════════════
