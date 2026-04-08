@@ -149,22 +149,11 @@ body{font-family:var(--ff-b);font-weight:400;color:#fff;background:var(--maroon-
 }
 
 .timeline{position:relative;margin-top:2.5rem;display:flex;flex-direction:column;align-items:center}
-.timeline__line{
-  position:absolute;left:50%;top:0;bottom:0;width:1px;
-  background:linear-gradient(180deg,transparent,var(--gold) 10%,var(--gold) 90%,transparent);
-  opacity:.3;transform:translateX(-50%);
-}
+.timeline__line{display:none}
 
 .tl-card{position:relative;padding:1.2rem 0;width:100%;display:flex;justify-content:center}
-.tl-card__dot{
-  position:absolute;left:50%;top:50%;
-  width:12px;height:12px;
-  border:2px solid var(--gold);border-radius:50%;
-  background:var(--maroon-d);
-  transform:translate(-50%,-50%);z-index:2;
-  box-shadow:0 0 12px rgba(201,168,76,.3);
-}
-.tl-card__dot--lg{width:16px;height:16px;background:var(--gold);box-shadow:0 0 20px rgba(201,168,76,.5)}
+.tl-card__dot{display:none}
+.tl-card__dot--lg{display:none}
 
 .tl-card__body{
   --cl:20px;--ct:1.5px;--cc:rgba(201,168,76,.5);
@@ -267,10 +256,7 @@ body{font-family:var(--ff-b);font-weight:400;color:#fff;background:var(--maroon-
 /* ═══════════════════════════════
    RESPONSIVE
    ═══════════════════════════════ */
-/* On mobile, hide timeline dots (cards stack without center line) */
-@media(max-width:767px){
-  .tl-card__dot{display:none}
-}
+@media(max-width:767px){}
 @media(max-width:480px){
   .dots{right:.5rem;gap:8px}
   .dot{width:8px;height:8px}
@@ -287,9 +273,7 @@ body{font-family:var(--ff-b);font-weight:400;color:#fff;background:var(--maroon-
   .corner{width:70px;height:70px}
   .photo-frame{width:clamp(240px,25vw,320px)}
 
-  /* Timeline: centered cards with visible dot markers */
   .tl-card__body{width:clamp(320px,40vw,420px)}
-  .tl-card__dot{display:block}
 }
 @media(min-width:1024px){
   .hero__bride,.hero__groom{font-size:8rem}
