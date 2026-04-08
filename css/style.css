@@ -100,10 +100,10 @@ body{font-family:var(--ff-b);font-weight:400;color:#fff;background:var(--maroon-
    Corners drawn via background-image gradients on the
    element itself, so they always align with the box edges.
    ═══════════════════════════════ */
-.couple-content{max-width:40rem;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.couple-content{max-width:40rem;display:flex;flex-direction:column;align-items:center;justify-content:center;padding-top:2rem;padding-bottom:2rem}
 .photo-frame{
   --cl:clamp(24px,6vw,40px);--ct:2px;--cg:var(--gold);
-  position:relative;width:clamp(180px,42vw,260px);margin:0 auto 1rem;padding:10px;
+  position:relative;width:clamp(180px,42vw,260px);margin:0 auto 1.5rem;padding:10px;
   background:
     linear-gradient(var(--cg),var(--cg)) 0 0/var(--cl) var(--ct) no-repeat,
     linear-gradient(var(--cg),var(--cg)) 0 0/var(--ct) var(--cl) no-repeat,
@@ -114,7 +114,7 @@ body{font-family:var(--ff-b);font-weight:400;color:#fff;background:var(--maroon-
     linear-gradient(var(--cg),var(--cg)) 100% 100%/var(--cl) var(--ct) no-repeat,
     linear-gradient(var(--cg),var(--cg)) 100% 100%/var(--ct) var(--cl) no-repeat;
 }
-.photo-frame__img{width:100%;display:block;aspect-ratio:3/4;object-fit:cover;object-position:center 20%}
+.photo-frame__img{width:100%;display:block;aspect-ratio:3/4;object-fit:cover;object-position:center 20%;max-height:45vh}
 
 .couple__names{
   font-family:var(--ff-d);font-weight:300;
@@ -158,8 +158,8 @@ body{font-family:var(--ff-b);font-weight:400;color:#fff;background:var(--maroon-
 .tl-card__body{
   --cl:20px;--ct:1.5px;--cc:rgba(201,168,76,.5);
   position:relative;
-  width:clamp(240px,75vw,320px);
-  padding:1.6rem 1.5rem;
+  width:clamp(270px,80vw,340px);
+  padding:2rem 1.8rem;
   backdrop-filter:blur(8px);
   text-align:center;
   transition:box-shadow .4s;
@@ -183,18 +183,40 @@ body{font-family:var(--ff-b);font-weight:400;color:#fff;background:var(--maroon-
   box-shadow:0 0 30px rgba(201,168,76,.06);
 }
 
+.tl-card__icon{
+  display:block;font-size:1.8rem;margin-bottom:.6rem;
+  filter:grayscale(.3) brightness(1.1);
+}
+.tl-card__icon--lg{font-size:2.2rem}
+
 .tl-card__title{
   font-family:var(--ff-s);font-size:clamp(1.6rem,5vw,2.2rem);
-  color:var(--gold-p);margin-bottom:.8rem;line-height:1.2;
+  color:var(--gold-p);margin-bottom:.6rem;line-height:1.2;
+}
+.tl-card__desc{
+  font-family:var(--ff-d);font-style:italic;
+  font-size:clamp(.8rem,2vw,.92rem);
+  color:var(--txt-dl);line-height:1.7;
+  margin-bottom:1rem;max-width:28ch;margin-left:auto;margin-right:auto;
+}
+.tl-card__divider{
+  width:40px;height:1px;margin:0 auto 1rem;
+  background:linear-gradient(90deg,transparent,var(--gold),transparent);opacity:.5;
 }
 .tl-card__date{
   font-family:var(--ff-d);font-weight:500;
   font-size:clamp(.88rem,2.3vw,1rem);
-  color:var(--txt-l);margin-bottom:.4rem;letter-spacing:.03em;
+  color:var(--txt-l);margin-bottom:.2rem;letter-spacing:.03em;
 }
+.tl-card__time{
+  font-family:var(--ff-d);font-style:italic;
+  font-size:.78rem;color:var(--gold);opacity:.7;
+  letter-spacing:.08em;text-transform:uppercase;margin-bottom:.8rem;
+}
+.tl-card__venue-block{margin-bottom:.8rem}
 .tl-card__venue{font-family:var(--ff-d);font-size:clamp(.88rem,2.2vw,1rem);color:var(--txt-l);margin-bottom:.1rem}
 .tl-card__addr{font-size:.82rem;color:var(--txt-dl);margin-bottom:.05rem}
-.tl-card__city{font-size:.82rem;color:var(--txt-dl);margin-bottom:.8rem}
+.tl-card__city{font-size:.82rem;color:var(--txt-dl)}
 .tl-card__link{
   display:inline-block;font-family:var(--ff-d);font-style:italic;
   font-size:.9rem;color:var(--gold);text-decoration:none;
