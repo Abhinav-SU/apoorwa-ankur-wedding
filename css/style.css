@@ -128,14 +128,14 @@ body{font-family:var(--ff-b);font-weight:400;color:#fff;background:var(--maroon-
    INVITATION CARD
    ═══════════════════════════════ */
 .invite-content{max-width:40rem;display:flex;flex-direction:column;align-items:center;justify-content:center}
-.photo-frame--invite{width:clamp(130px,30vw,180px);margin-bottom:1.2rem}
-.photo-frame--invite .photo-frame__img{max-height:35vh}
+.photo-frame--invite{width:clamp(200px,40vw,280px);margin-bottom:1.5rem}
+.photo-frame--invite .photo-frame__img{max-height:42vh}
 .invite-card{padding:.5rem 0}
 .invite-card__pre{font-family:var(--ff-d);font-style:italic;font-size:clamp(.85rem,2.2vw,1rem);color:var(--gold-l);margin-bottom:1.5rem;opacity:.8;line-height:1.7}
 .invite-card__families{margin-bottom:2rem}
 .invite-card__families p{font-family:var(--ff-d);font-size:clamp(.9rem,2.3vw,1.05rem);line-height:1.7;color:var(--txt-l)}
 .invite-card__and{font-family:var(--ff-d);font-size:1.2rem;color:var(--gold);opacity:.4;margin:.3rem 0}
-.invite-card__invite{font-family:var(--ff-d);font-weight:300;font-size:clamp(3rem,10vw,5.5rem);letter-spacing:.08em;color:var(--gold-p);margin-bottom:.5rem;line-height:1}
+.invite-card__invite{font-family:var(--ff-d);font-weight:300;font-size:clamp(2.4rem,8vw,4.2rem);letter-spacing:.08em;color:var(--gold-p);margin-bottom:.5rem;line-height:1}
 .invite-card__text{font-family:var(--ff-d);font-style:italic;font-size:clamp(.85rem,2.2vw,1rem);color:var(--txt-dl);margin-bottom:1.5rem}
 .invite-card__couple{display:flex;align-items:baseline;justify-content:center;gap:.75rem;flex-wrap:wrap;margin-bottom:1.5rem}
 .invite-card__name{font-family:var(--ff-d);font-weight:300;font-size:clamp(2.2rem,7vw,3.5rem);color:var(--gold-l);line-height:1;letter-spacing:.04em}
@@ -186,11 +186,11 @@ body{font-family:var(--ff-b);font-weight:400;color:#fff;background:var(--maroon-
   box-shadow:0 0 30px rgba(201,168,76,.06);
 }
 
-.tl-card__icon{
-  display:block;font-size:1.8rem;margin-bottom:.6rem;
-  filter:grayscale(.3) brightness(1.1);
+.tl-card__svg{
+  display:block;width:48px;height:48px;margin:0 auto .8rem;
+  color:var(--gold);opacity:.7;
 }
-.tl-card__icon--lg{font-size:2.2rem}
+.tl-card__svg--lg{width:56px;height:56px;opacity:.85}
 
 .tl-card__title{
   font-family:var(--ff-s);font-size:clamp(1.6rem,5vw,2.2rem);
