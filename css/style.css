@@ -27,7 +27,7 @@ body{font-family:var(--ff-b);font-weight:400;color:#fff;background:var(--maroon-
   body{overflow:hidden;height:100vh;height:100dvh}
   .pages{height:100vh;height:100dvh;overflow-y:auto;scroll-snap-type:y mandatory}
   .page{height:100vh;height:100dvh;min-height:auto;scroll-snap-align:start}
-  .page--invite,.page--events{height:auto;min-height:100dvh;scroll-snap-align:start}
+  .page--invite{height:auto;min-height:100dvh;scroll-snap-align:start}
 }
 
 /* ═══════ BACKGROUNDS ═══════ */
@@ -142,91 +142,71 @@ body{font-family:var(--ff-b);font-weight:400;color:#fff;background:var(--maroon-
 .invite-card__amp{font-family:var(--ff-d);font-size:1.2rem;color:var(--gold);opacity:.5}
 
 /* ═══════════════════════════════
-   EVENTS TIMELINE
+   EVENT PAGES (one per ceremony)
    ═══════════════════════════════ */
-.events-content{max-width:44rem;padding-top:4rem;padding-bottom:4rem}
-.events__heading{
-  font-family:var(--ff-d);font-weight:300;
-  font-size:clamp(2.2rem,6vw,3.5rem);
-  color:var(--gold-p);letter-spacing:.06em;margin-bottom:.5rem;
-}
-
-.timeline{position:relative;margin-top:2.5rem;display:flex;flex-direction:column;align-items:center}
-.timeline__line{display:none}
-
-.tl-card{position:relative;padding:1.2rem 0;width:100%;display:flex;justify-content:center}
-.tl-card__dot{display:none}
-.tl-card__dot--lg{display:none}
-
-.tl-card__body{
-  --cl:20px;--ct:1.5px;--cc:rgba(201,168,76,.5);
-  position:relative;
-  width:clamp(270px,80vw,340px);
-  padding:2rem 1.8rem;
-  backdrop-filter:blur(8px);
-  text-align:center;
-  transition:box-shadow .4s;
+.page__bg--event{
   background:
-    linear-gradient(var(--cc),var(--cc)) 0 0/var(--cl) var(--ct) no-repeat,
-    linear-gradient(var(--cc),var(--cc)) 0 0/var(--ct) var(--cl) no-repeat,
-    linear-gradient(var(--cc),var(--cc)) 100% 0/var(--cl) var(--ct) no-repeat,
-    linear-gradient(var(--cc),var(--cc)) 100% 0/var(--ct) var(--cl) no-repeat,
-    linear-gradient(var(--cc),var(--cc)) 0 100%/var(--cl) var(--ct) no-repeat,
-    linear-gradient(var(--cc),var(--cc)) 0 100%/var(--ct) var(--cl) no-repeat,
-    linear-gradient(var(--cc),var(--cc)) 100% 100%/var(--cl) var(--ct) no-repeat,
-    linear-gradient(var(--cc),var(--cc)) 100% 100%/var(--ct) var(--cl) no-repeat,
-    rgba(240,228,184,.04);
+    radial-gradient(ellipse 70% 50% at 50% 45%,rgba(78,12,30,.35),transparent),
+    linear-gradient(175deg,var(--maroon-dd) 0%,var(--maroon-d) 35%,var(--maroon) 65%,var(--maroon-d) 100%);
 }
-.tl-card__body:hover{
-  box-shadow:0 0 40px rgba(201,168,76,.08);
+.page__bg--event-alt{
+  background:
+    radial-gradient(ellipse 60% 55% at 50% 50%,rgba(92,18,32,.35),transparent),
+    linear-gradient(185deg,var(--maroon-d) 0%,var(--maroon) 40%,var(--red-d) 70%,var(--maroon-dd) 100%);
 }
 
-.tl-card--highlight .tl-card__body{
-  --cl:26px;--ct:2px;--cc:rgba(201,168,76,.8);
-  box-shadow:0 0 30px rgba(201,168,76,.06);
+.event-content{
+  max-width:36rem;display:flex;flex-direction:column;align-items:center;justify-content:center;
 }
+.event__label{
+  font-family:var(--ff-d);font-weight:400;font-style:italic;
+  font-size:clamp(.75rem,1.8vw,.85rem);
+  color:var(--gold);letter-spacing:.2em;text-transform:uppercase;opacity:.6;margin-bottom:.3rem;
+}
+.event__icon{
+  display:block;width:clamp(52px,12vw,68px);height:clamp(52px,12vw,68px);
+  margin:1rem auto;color:var(--gold);opacity:.65;
+}
+.event__icon--lg{width:clamp(60px,14vw,80px);height:clamp(60px,14vw,80px);opacity:.8}
 
-.tl-card__svg{
-  display:block;width:48px;height:48px;margin:0 auto .8rem;
-  color:var(--gold);opacity:.7;
+.event__title{
+  font-family:var(--ff-s);font-size:clamp(2.2rem,7vw,3.2rem);
+  color:var(--gold-p);margin-bottom:.8rem;line-height:1.2;
 }
-.tl-card__svg--lg{width:56px;height:56px;opacity:.85}
-
-.tl-card__title{
-  font-family:var(--ff-s);font-size:clamp(1.6rem,5vw,2.2rem);
-  color:var(--gold-p);margin-bottom:.6rem;line-height:1.2;
-}
-.tl-card__desc{
+.event__desc{
   font-family:var(--ff-d);font-style:italic;
-  font-size:clamp(.8rem,2vw,.92rem);
-  color:var(--txt-dl);line-height:1.7;
-  margin-bottom:1rem;max-width:28ch;margin-left:auto;margin-right:auto;
+  font-size:clamp(.88rem,2.2vw,1.05rem);
+  color:var(--txt-dl);line-height:1.8;
+  margin-bottom:1.5rem;max-width:30ch;text-align:center;
 }
-.tl-card__divider{
-  width:40px;height:1px;margin:0 auto 1rem;
+.event__divider{
+  width:50px;height:1px;margin:0 auto 1.5rem;
   background:linear-gradient(90deg,transparent,var(--gold),transparent);opacity:.5;
 }
-.tl-card__date{
+.event__date{
   font-family:var(--ff-d);font-weight:500;
-  font-size:clamp(.88rem,2.3vw,1rem);
-  color:var(--txt-l);margin-bottom:.2rem;letter-spacing:.03em;
+  font-size:clamp(1rem,2.5vw,1.15rem);
+  color:var(--txt-l);margin-bottom:.3rem;letter-spacing:.03em;
 }
-.tl-card__time{
+.event__time{
   font-family:var(--ff-d);font-style:italic;
-  font-size:.78rem;color:var(--gold);opacity:.7;
-  letter-spacing:.08em;text-transform:uppercase;margin-bottom:.8rem;
+  font-size:clamp(.78rem,1.8vw,.88rem);color:var(--gold);opacity:.7;
+  letter-spacing:.08em;text-transform:uppercase;margin-bottom:1.2rem;
 }
-.tl-card__venue-block{margin-bottom:.8rem}
-.tl-card__venue{font-family:var(--ff-d);font-size:clamp(.88rem,2.2vw,1rem);color:var(--txt-l);margin-bottom:.1rem}
-.tl-card__addr{font-size:.82rem;color:var(--txt-dl);margin-bottom:.05rem}
-.tl-card__city{font-size:.82rem;color:var(--txt-dl)}
-.tl-card__link{
+.event__venue{margin-bottom:1.2rem;text-align:center}
+.event__venue-name{font-family:var(--ff-d);font-size:clamp(.95rem,2.3vw,1.1rem);color:var(--txt-l);margin-bottom:.15rem}
+.event__venue-addr{font-size:.85rem;color:var(--txt-dl);margin-bottom:.1rem}
+.event__venue-city{font-size:.85rem;color:var(--txt-dl)}
+.event__map{
   display:inline-block;font-family:var(--ff-d);font-style:italic;
-  font-size:.9rem;color:var(--gold);text-decoration:none;
+  font-size:.95rem;color:var(--gold);text-decoration:none;
   border-bottom:1px solid rgba(201,168,76,.3);padding-bottom:2px;
   transition:color .3s,border-color .3s;
 }
-.tl-card__link:hover{color:var(--gold-l);border-color:var(--gold-l)}
+.event__map:hover{color:var(--gold-l);border-color:var(--gold-l)}
+
+.page--event-highlight .event__title{color:var(--gold-l)}
+.page--event-highlight .event__icon{opacity:.9}
 
 /* ═══════════════════════════════
    COUNTDOWN / CLOSING
@@ -298,21 +278,16 @@ body{font-family:var(--ff-b);font-weight:400;color:#fff;background:var(--maroon-
   .hero-corners{inset:3rem}
   .corner{width:70px;height:70px}
   .photo-frame{width:clamp(240px,25vw,320px)}
-
-  .tl-card__body{width:clamp(320px,40vw,420px)}
+  .event__title{font-size:clamp(2.6rem,5vw,3.5rem)}
+  .event__desc{max-width:36ch}
 }
 @media(min-width:1024px){
   .hero__bride,.hero__groom{font-size:8rem}
   .page__content{max-width:44rem;padding:5rem 2rem}
-  .events-content{max-width:50rem}
-  .tl-card__body{width:clamp(360px,35vw,440px);padding:2rem 2rem}
-  .tl-card__title{font-size:2.2rem}
 }
 @media(min-width:1440px){
   .mandala--1{width:700px;height:700px}
   .mandala--2{width:520px;height:520px}
   .hero-corners{inset:4rem}
   .corner{width:90px;height:90px}
-  .events-content{max-width:56rem}
-  .tl-card__body{width:clamp(400px,30vw,480px)}
 }
