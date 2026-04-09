@@ -18,38 +18,41 @@
   }
 
   function initDots(){
-    const dots = document.querySelectorAll(".dot");
-    const sections = [];
-    dots.forEach(d=>{
-      const id = d.dataset.target;
-      const sec = document.getElementById(id);
-      if(sec) sections.push({dot:d,sec});
-    });
+    const nav = document.getElementById("dotsNav");
+    if(!nav) return;
 
-    const obs = new IntersectionObserver(entries=>{
-      entries.forEach(e=>{
-        if(e.isIntersecting){
-          const match = sections.find(s=>s.sec===e.target);
-          if(!match) return;
-          dots.forEach(d=>d.classList.remove("dot--active"));
-          match.dot.classList.add("dot--active");
-        }
-      });
-    },{root: isMobileSnap() ? pages : null, threshold:.5});
+    const allSections = Array.from(document.querySelectorAll(".page"));
+    const visible = allSections.filter(s => s.offsetHeight > 0);
+    const pairs = [];
 
-    sections.forEach(s=>obs.observe(s.sec));
+    visible.forEach((sec, i)=>{
+      const btn = document.createElement("button");
+      btn.className = "dot" + (i === 0 ? " dot--active" : "");
+      btn.setAttribute("aria-label", sec.querySelector(".event__title,.hero__bride,.invite-card__invite,.closing__heading")?.textContent || "Section");
+      nav.appendChild(btn);
+      pairs.push({dot: btn, sec});
 
-    dots.forEach(d=>{
-      d.addEventListener("click",()=>{
-        const sec = document.getElementById(d.dataset.target);
-        if(!sec) return;
+      btn.addEventListener("click", ()=>{
         if(isMobileSnap() && pages){
-          pages.scrollTo({top:sec.offsetTop,behavior:"smooth"});
+          pages.scrollTo({top: sec.offsetTop, behavior:"smooth"});
         } else {
           sec.scrollIntoView({behavior:"smooth"});
         }
       });
     });
+
+    const obs = new IntersectionObserver(entries=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting){
+          const match = pairs.find(p => p.sec === e.target);
+          if(!match) return;
+          pairs.forEach(p => p.dot.classList.remove("dot--active"));
+          match.dot.classList.add("dot--active");
+        }
+      });
+    },{root: isMobileSnap() ? pages : null, threshold:.4});
+
+    pairs.forEach(p => obs.observe(p.sec));
   }
 
   function initReveal(){
@@ -69,7 +72,7 @@
       });
     },{root: isMobileSnap() ? pages : null, threshold:.2});
 
-    document.querySelectorAll(".tl-card").forEach(el=>obs.observe(el));
+    document.querySelectorAll(".event-content").forEach(el=>obs.observe(el));
   }
 
   function initPetals(){
