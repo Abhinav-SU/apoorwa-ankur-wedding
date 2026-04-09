@@ -193,7 +193,7 @@
           s.el.scrollIntoView({behavior:"smooth", block:"end"});
         }
       }
-      timer = setTimeout(scrollNext, 5000);
+      timer = setTimeout(scrollNext, 7500);
     }
 
     const stopEvents = ["wheel","touchstart","mousedown","keydown"];
@@ -206,7 +206,7 @@
       });
     }
 
-    timer = setTimeout(scrollNext, 4000);
+    timer = setTimeout(scrollNext, 6000);
   }
 
   applyVersion();
