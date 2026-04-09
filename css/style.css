@@ -250,8 +250,9 @@ body{font-family:var(--ff-b);font-weight:400;color:#fff;background:var(--maroon-
 /* ═══════════════════════════════
    MUSIC BUTTON
    ═══════════════════════════════ */
-.music-btn{position:fixed;bottom:1.5rem;right:1.5rem;z-index:100;width:48px;height:48px;border-radius:50%;border:1.5px solid rgba(201,168,76,.4);background:rgba(26,5,8,.85);color:var(--gold);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .25s;backdrop-filter:blur(8px)}
-.music-btn:hover{border-color:var(--gold);background:rgba(201,168,76,.12)}
+.music-btn{position:fixed;bottom:1.5rem;right:1.5rem;z-index:100;width:48px;height:48px;border-radius:50%;border:1.5px solid rgba(201,168,76,.25);background:rgba(26,5,8,.85);color:var(--gold);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .25s;backdrop-filter:blur(8px);opacity:.6}
+.music-btn:hover{border-color:var(--gold);background:rgba(201,168,76,.12);opacity:1}
+.music-btn[aria-pressed="true"]{border-color:var(--gold);background:rgba(201,168,76,.15);opacity:1;box-shadow:0 0 16px rgba(201,168,76,.25)}
 
 /* ═══════════════════════════════
    ORNAMENTAL ELEMENTS

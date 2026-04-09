@@ -152,10 +152,22 @@
   function initAutoScroll(){
     if(window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
-    const secs = Array.from(document.querySelectorAll(".page"));
-    let idx = 0;
+    const allSections = Array.from(document.querySelectorAll(".page"));
+    const visibleSections = allSections.filter(s => s.offsetHeight > 0);
+    let step = 0;
     let timer = null;
     let stopped = false;
+
+    function buildSteps(){
+      const steps = [];
+      visibleSections.forEach((sec, i)=>{
+        steps.push({el: sec, top: true});
+        if(sec.scrollHeight > window.innerHeight * 1.3){
+          steps.push({el: sec, top: false});
+        }
+      });
+      return steps;
+    }
 
     function stop(){
       stopped = true;
@@ -164,13 +176,22 @@
 
     function scrollNext(){
       if(stopped) return;
-      idx++;
-      if(idx >= secs.length){ stop(); return; }
-      const target = secs[idx];
-      if(isMobileSnap() && pages){
-        pages.scrollTo({top: target.offsetTop, behavior:"smooth"});
+      step++;
+      const steps = buildSteps();
+      if(step >= steps.length){ stop(); return; }
+      const s = steps[step];
+      if(s.top){
+        if(isMobileSnap() && pages){
+          pages.scrollTo({top: s.el.offsetTop, behavior:"smooth"});
+        } else {
+          s.el.scrollIntoView({behavior:"smooth", block:"start"});
+        }
       } else {
-        target.scrollIntoView({behavior:"smooth"});
+        if(isMobileSnap() && pages){
+          pages.scrollTo({top: s.el.offsetTop + s.el.offsetHeight - window.innerHeight, behavior:"smooth"});
+        } else {
+          s.el.scrollIntoView({behavior:"smooth", block:"end"});
+        }
       }
       timer = setTimeout(scrollNext, 5000);
     }
