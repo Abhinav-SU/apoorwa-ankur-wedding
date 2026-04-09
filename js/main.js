@@ -149,6 +149,45 @@
     if(el) el.textContent = new Date().getFullYear();
   }
 
+  function initAutoScroll(){
+    if(window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    const secs = Array.from(document.querySelectorAll(".page"));
+    let idx = 0;
+    let timer = null;
+    let stopped = false;
+
+    function stop(){
+      stopped = true;
+      if(timer) clearTimeout(timer);
+    }
+
+    function scrollNext(){
+      if(stopped) return;
+      idx++;
+      if(idx >= secs.length){ stop(); return; }
+      const target = secs[idx];
+      if(isMobileSnap() && pages){
+        pages.scrollTo({top: target.offsetTop, behavior:"smooth"});
+      } else {
+        target.scrollIntoView({behavior:"smooth"});
+      }
+      timer = setTimeout(scrollNext, 5000);
+    }
+
+    const stopEvents = ["wheel","touchstart","mousedown","keydown"];
+    stopEvents.forEach(evt=>{
+      window.addEventListener(evt, stop, {once:true, passive:true});
+    });
+    if(pages){
+      stopEvents.forEach(evt=>{
+        pages.addEventListener(evt, stop, {once:true, passive:true});
+      });
+    }
+
+    timer = setTimeout(scrollNext, 4000);
+  }
+
   applyVersion();
   initDots();
   initReveal();
@@ -158,4 +197,5 @@
   initCountdown();
   initMusic();
   initYear();
+  initAutoScroll();
 })();
